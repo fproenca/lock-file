@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "lock-file": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
