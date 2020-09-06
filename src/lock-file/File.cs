@@ -27,8 +27,11 @@ namespace lock_file
             var files = Directory.GetFiles(sourcePath);
             foreach (var file in files)
             {
-                var fileInfo = new FileInfo(file);
-                Copy(fileInfo.Name, sourcePath, destinationPath);
+                if (System.IO.File.Exists(Path.Combine(sourcePath, file)))
+                {
+                    var fileInfo = new FileInfo(file);
+                    Copy(fileInfo.Name, sourcePath, destinationPath);
+                }
             }
         }
 

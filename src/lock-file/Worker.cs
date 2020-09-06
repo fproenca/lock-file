@@ -21,8 +21,7 @@ namespace lock_file
             _logger = logger;
             _file = new File();
             _fs = new FileSystemWatcher(@"C:\Users\francisco\Desktop\Origem");
-            _timer = new System.Timers.Timer(30000);
-            _timer.Elapsed += _timer_Elapsed;
+            _timer = new System.Timers.Timer(5000);
             _timer.Start();
         }
         public Task StartAsync(CancellationToken cancellationToken)
@@ -30,18 +29,18 @@ namespace lock_file
             _logger.LogInformation("Start StartAsync");
             _fs.Created += _fs_Created;
             _fs.EnableRaisingEvents = true;
+            _timer.Elapsed += _timer_Elapsed;
             return Task.CompletedTask;
         }
 
         private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Task.Run(() => _file.CopyEventually(@"C:\Users\francisco\Desktop\Origem", @"C:\Users\francisco\Desktop\Destino"));
+            _file.CopyEventually(@"C:\Users\francisco\Desktop\Origem", @"C:\Users\francisco\Desktop\Destino");
         }
 
         private void _fs_Created(object sender, FileSystemEventArgs e)
         {
-            Task.Run(() =>
-                _file.Copy(e.Name, @"C:\Users\francisco\Desktop\Origem", @"C:\Users\francisco\Desktop\Destino"));
+            _file.Copy(e.Name, @"C:\Users\francisco\Desktop\Origem", @"C:\Users\francisco\Desktop\Destino");
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

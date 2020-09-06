@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>dotnet-lock-file-82E5B24E-9D15-4D59-93F0-F8F758362E71</UserSecretsId>
     <RootNamespace>lock_file</RootNamespace>
   </PropertyGroup>
